@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes as Switch,
+  Route,
+} from "react-router-dom";
+import Navbar from "./Navbar";
+import CreateUser from "./Component/CreateUser";
+import CreateAccount from "./Component/CreateAccount";
+import CreateCard from "./Component/CreateCard";
+import Created from "./Component/Created";
+import Statement from "./Component/Statement";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar />
+      <Switch>
+        <Route path="/new" element={<CreateUser />}></Route>
+        <Route path="/account" element={<CreateAccount />}></Route>
+        <Route path="/card" element={<CreateCard />}></Route>
+        <Route path="/success" element={<Created />}></Route>
+        <Route path="/statement" element={<Statement />}></Route>
+      </Switch>
+    </Router>
   );
 }
-
-export default App;
