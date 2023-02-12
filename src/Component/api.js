@@ -39,6 +39,18 @@ const getBalance = (acc_no) => {
 const getAccounts = (user_id) => {
     return axios.get(`${endpoint}/api/bank/account/${user_id}`)
 }
+const withdrawal = (account_no, amount) => {
+    return axios.put(`${endpoint}/api/trans/withdraw`, {
+        account_no,
+        amount
+    })
+}
+const depositing = (account_no, amount) => {
+    return axios.put(`${endpoint}/api/trans/deposit`, {
+        account_no,
+        amount
+    })
+}
 export {
     createUser,
     createAccount,
@@ -46,5 +58,7 @@ export {
     createCreditCard,
     cardDetails,
     getBalance,
-    getAccounts
+    getAccounts,
+    withdrawal,
+    depositing
 }

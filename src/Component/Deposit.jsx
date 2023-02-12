@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { withdrawal } from "./api";
+import { depositing } from "./api";
 
-export default function Withdraw() {
+export default function Deposit() {
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const { data } = await withdrawal(accountNo, amount);
+    const { data } = await depositing(accountNo, amount);
     const bal = data[0];
     if (bal.affectedRows > 0) {
       navigate(`/bal/${accountNo}`);
@@ -16,7 +16,7 @@ export default function Withdraw() {
   const [accountNo, setAccountNo] = useState("");
   return (
     <div>
-      <h1 className="text-center pt-3 pb-4">Withdraw</h1>
+      <h1 className="text-center pt-3 pb-4">Deposit</h1>
       <form onSubmit={handleSubmit} className="mx-auto w-50">
         <div className="form-group">
           <label htmlFor="amount">Enter amount</label>

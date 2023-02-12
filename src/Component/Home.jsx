@@ -28,13 +28,13 @@ export default function Home() {
           </Link>
         </div>
         <div className="col-4">
-          <Link to="/" className="btn btn-lg btn-primary p-4">
+          <Link to="/deposit" className="btn btn-lg btn-primary p-4">
             Deposit
           </Link>
         </div>
         <div className="col-4">
-          <Link to="/" className="btn btn-lg btn-primary p-4">
-            View Statement
+          <Link to="/users" className="btn btn-lg btn-primary p-4">
+            View Customers
           </Link>
         </div>
       </div>
