@@ -1,31 +1,26 @@
-import React, { useState } from "react";
-import { createCreditCard } from "./api";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
-export default function CreateCard() {
-  const [idNumber, setIdNumber] = useState("");
-  const [accountNo, setAccountNo] = useState("");
-  const navigate = useNavigate();
-  const handleSubmit = async (event) => {
+export default function Withdraw() {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const { data } = await createCreditCard(accountNo, idNumber);
-    if (data.affectedRows > 0) {
-      navigate(`/cards/${accountNo}`);
-    }
+    console.log(`amount is ${amount}`);
+    console.log(`Account No is ${accountNo}`);
   };
+  const [amount, setAmount] = useState("");
+  const [accountNo, setAccountNo] = useState("");
   return (
     <div>
-      <h1 className="text-center">Card</h1>
-
+      <h1 className="text-center pt-3 pb-4">Withdraw</h1>
       <form onSubmit={handleSubmit} className="mx-auto w-50">
         <div className="form-group">
-          <label htmlFor="idNumber">User bank Number</label>
+          <label htmlFor="amount">Enter amount</label>
           <input
             type="text"
             className="form-control"
-            id="idNumber"
-            value={idNumber}
-            onChange={(event) => setIdNumber(event.target.value)}
+            id="amount"
+            required
+            value={amount}
+            onChange={(event) => setAmount(event.target.value)}
           />
         </div>
         <div className="form-group">
@@ -34,6 +29,7 @@ export default function CreateCard() {
             type="text"
             className="form-control"
             id="accountNo"
+            required
             value={accountNo}
             onChange={(event) => setAccountNo(event.target.value)}
           />

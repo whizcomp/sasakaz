@@ -1,15 +1,26 @@
 import React, { useState } from "react";
+import { createAccount, createUser } from "./api";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateUser() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [idNumber, setIdNumber] = useState("");
-
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(`First Name: ${firstName}`);
-    console.log(`Last Name: ${lastName}`);
-    console.log(`ID Number: ${idNumber}`);
+
+    const data = { firstName, lastName, idNumber };
+    const { data: result } = await createUser(data);
+    console.log(result);
+    if (result.affectedRows > 0) {
+      const { insertId } = result;
+      const { data: new_acc } = await createAccount(insertId);
+      if (new_acc.affectedRows > 0) {
+        const { insertId: id } = new_acc;
+        navigate(`/success/${id}`);
+      }
+    }
   };
   return (
     <div>

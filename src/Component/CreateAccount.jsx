@@ -1,9 +1,17 @@
 import React, { useState } from "react";
+import { createAccount } from "./api";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateAccount() {
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(`ID Number: ${idNumber}`);
+    const { data } = await createAccount(idNumber);
+    if (data.affectedRows > 0) {
+      const { insertId: id } = data;
+      navigate(`/success/${id}`);
+    }
   };
   const [idNumber, setIdNumber] = useState("");
   return (
@@ -11,7 +19,9 @@ export default function CreateAccount() {
       <h1 className="text-center">Create Account</h1>
       <form onSubmit={handleSubmit} className="mx-auto w-50">
         <div className="form-group">
-          <label htmlFor="idNumber">User bank Number</label>
+          <label htmlFor="idNumber" className="pb-4">
+            Enter the Customer Bank Id
+          </label>
           <input
             type="text"
             className="form-control"
