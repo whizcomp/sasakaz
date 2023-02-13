@@ -51,6 +51,9 @@ const depositing = (account_no, amount) => {
         amount
     })
 }
+const getUsers = () => {
+    return axios.get(`${endpoint}/api/bank/users`)
+}
 export {
     createUser,
     createAccount,
@@ -60,5 +63,6 @@ export {
     getBalance,
     getAccounts,
     withdrawal,
-    depositing
+    depositing,
+    getUsers
 }

@@ -10,7 +10,7 @@ export default function Succesful() {
   const getUser = async () => {
     const { data } = await getAccountDetails(id);
     console.log(data);
-    setDatas(data[0]);
+    setDatas(data);
   };
   const [datas, setDatas] = useState([]);
   return (
@@ -27,24 +27,39 @@ export default function Succesful() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="col">Full Name</th>
-            <td scope="col">
-              {datas.first_name} {datas && datas.last_name}
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">Bank Id</th>
-            <td>{datas.customer_id}</td>
-          </tr>
-          <tr>
-            <th scope="row">Account No</th>
-            <td>{datas.account_no}</td>
-          </tr>
-          <tr>
-            <th scope="row">Bank Bal</th>
-            <td>{datas.current_balance}</td>
-          </tr>
+          {datas.map((data) => (
+            <>
+              <tr className="pt-3 table-dark">
+                <th scope="col">Full Name</th>
+                <td scope="col">
+                  {data.first_name} {data.last_name}
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Bank Id</th>
+                <td>{data.customer_id}</td>
+              </tr>
+              <tr>
+                <th scope="row">Account No</th>
+                <td>{data.account_no}</td>
+              </tr>
+              <tr>
+                <th scope="row">Bank Bal</th>
+                <td>{data.current_balance}</td>
+              </tr>
+              <tr>
+                <td colSpan="2">
+                  <Link to={`/cards/${data.account_no}`}>
+                    {" "}
+                    <div className="btn btn-info d-grid gap-2">
+                      View Credit Cards
+                    </div>
+                  </Link>
+                </td>
+              </tr>
+              <div className="pt-5"></div>
+            </>
+          ))}
         </tbody>
       </table>
       <Link to="/">Go Home</Link>

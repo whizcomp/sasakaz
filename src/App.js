@@ -16,6 +16,7 @@ import Home from "./Component/Home";
 import Withdraw from "./Component/Withdraw";
 import Balance from "./Component/Balance";
 import Deposit from "./Component/Deposit";
+import Users from "./Component/Users";
 
 export default function App() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
         <Route path="/statement" element={<Statement />}></Route>
         <Route path="/withdraw" element={<Withdraw />}></Route>
         <Route path="/deposit" element={<Deposit />}></Route>
+        <Route path="/users" element={<Users />}></Route>
 
         <Route path="/" element={<Home />}></Route>
       </Switch>

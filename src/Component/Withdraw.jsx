@@ -7,6 +7,7 @@ export default function Withdraw() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const { data } = await withdrawal(accountNo, amount);
+
     const bal = data[0];
     if (bal.affectedRows > 0) {
       navigate(`/bal/${accountNo}`);
